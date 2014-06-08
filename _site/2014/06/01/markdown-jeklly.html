@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title> MarkDown 测试页面了 </title>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/jeklly_demo/css/syntax.css">
+
+        <!-- Bootstrap core CSS -->
+    	<link href="/jeklly_demo/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/jeklly_demo/css/main.css">
+
+    </head>
+    <body>
+
+		<div class="container">
+
+			<div class="col-sm-3">
+				<h1></h1>
+				<img id="about" src="/jeklly_demo/img/logo.jpg" height="75px" width="75px" /><br />
+
+				<strong>navigation</strong><br />
+				<a href="/">home</a> <br />
+				
+
+				
+			</div>
+
+			<div class="col-sm-8 col-offset-1">
+
+				<h1 id="this-should-be-a-h1-header">This should be a H1 header</h1>
+<p>## 然后这里是二级标题</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+
+<span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;net/http&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;libnotify&#39;</span>
+
+<span class="k">def</span> <span class="nf">parsejson</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;http://api.openweathermap.org/data/2.5/find?q=London&amp;mode=json&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">get_response</span><span class="p">(</span><span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+    <span class="n">weatherjson</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">weatherjson</span><span class="p">)</span>
+
+    <span class="c1"># check for errors</span>
+    <span class="k">if</span> <span class="n">actual</span><span class="o">.</span><span class="n">has_key?</span> <span class="s1">&#39;Error&#39;</span>
+        <span class="k">raise</span> <span class="s2">&quot;error with the url&quot;</span>
+    <span class="k">end</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="o">[]</span>
+
+    <span class="n">actual</span><span class="o">[</span><span class="s2">&quot;list&quot;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">listitem</span><span class="o">|</span>
+        <span class="n">weather</span> <span class="o">=</span> <span class="n">listitem</span><span class="o">[</span><span class="s2">&quot;weather&quot;</span><span class="o">]</span>
+        <span class="n">weather</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">weath</span><span class="o">|</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">weath</span><span class="o">[</span><span class="s2">&quot;description&quot;</span><span class="o">]</span><span class="p">)</span>
+        <span class="k">end</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">listitem</span><span class="o">[</span><span class="s2">&quot;main&quot;</span><span class="o">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">main</span><span class="o">[</span><span class="s2">&quot;temp&quot;</span><span class="o">]</span> <span class="o">-</span> <span class="mi">273</span><span class="o">.</span><span class="mi">15</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s2">&quot;%.2f&quot;</span> <span class="o">%</span> <span class="n">temp</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+<span class="k">end</span></code></pre></div>
+
+<p>```
+function () {
+  console.log(“bla”);
+}</p>
+
+<p>var foo = “bar”;
+//这里是代码段喽</p>
+
+<p>```</p>
+
+<p><code>simple code snippet</code> 也是必须的功能呀</p>
+
+
+				<footer>
+					&copy; 
+					
+				</footer>
+			</div>
+
+		</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/jeklly_demo/js/bootstrap.min.js"></script>
+    </body>
+</html>
